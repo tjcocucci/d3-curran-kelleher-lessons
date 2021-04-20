@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Import data with d3</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      pre {
+        font-size: 5em;
+      }
+    </style>
+    <script src="https://unpkg.com/react@16.9.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.9.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/d3@5.11.0/dist/d3.min.js"></script>
+  </head>
+  <body>
+  <pre id="message-container"></pre>
+  <script>
+      
+      const csvUrl = "https://gist.githubusercontent.com/tjcocucci/d890b6b864020ab77a79699079a29b5c/raw/cssNamedColors.csv";
+      
+      // d3 implementation
+      d3.csv(csvUrl).then( data => {
+        let message = '';
+        message = message + data.length + ' rows\n';
+        message = message + data.columns.length + ' columns\n';
+        message = message + Math.round(d3.csvFormat(data).length / 1024) + ' kB';
+        document.getElementById('message-container').textContent = message;
+      });
+      
+      // fetch async await implementation
+      // const fetchText = async (url) => {
+      //   const response = await fetch(url);
+      //   return await response.text();
+      // };
+      // fetchText(csvUrl).then( text => {
+      //   const data = d3.csvParse(text);
+      //   let message = '';
+      //   message = message + data.length + ' rows\n';
+      //   message = message + data.columns.length + ' columns\n';
+      //   message = message + Math.round(text.length / 1024) + ' kB';
+      //   document.getElementById('message-container').textContent = message;
+      // });
+
+      // Pyramid of doom implementation into console log
+      // fetch(csvUrl).then( response => {
+      //   response.text().then( text => {
+      //     console.log(text);
+      //   });
+      // });
+
+
+  </script>
+  </body>
+</html>
