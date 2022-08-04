@@ -1,24 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { range } from 'd3';
 import { Face } from './Face';
 
-const width = 160;
-const height = 160;
+const width = 200;
+const height = 200;
+const faceRadius = 90;
 
-const array = range(6 * 5);
-
-const App = () => array.map(() =>
+const App = () => (
   <Face
-    width={width}
-    height={height}
+    width={200}
+    height={200}
     centerX={width / 2}
     centerY={height / 2}
+    faceRadius={90}
+    eyeRadius={10}
+    offsetX={faceRadius / 3}
+    offsetY={faceRadius / 3}
     strokeWidth={10}
-    eyeOffsetX={30}
-    eyeOffsetY={30}
-    eyeRadius={10 + Math.random()*10}
-    mouthRadius={40}
+    mouthRadius={faceRadius * 2 / 3}
     mouthWidth={10}
   />
 );

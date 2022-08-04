@@ -4,35 +4,37 @@ import { Mouth } from './Mouth';
 import { FaceContainer } from './FaceContainer';
 
 export const Face = ({
-    width,
-    height,
-    centerX,
-    centerY,
-    strokeWidth,
-    eyeRadius,
-    eyeOffsetX,
-    eyeOffsetY,
-    mouthWidth,
-    mouthRadius
+  width,
+  height,
+  centerX,
+  centerY,
+  faceRadius,
+  strokeWidth,
+  offsetX,
+  offsetY,
+  eyeRadius,
+  mouthRadius,
+  mouthWidth
 }) => (
-    <FaceContainer
-      width={width}
-      height={height}
-      centerX={centerX}
-      centerY={centerY}
+  <FaceContainer
+    width={width}
+    height={height}
+    centerX={centerX}
+    centerY={centerY}
+  >
+    <BackgroundCircle
+      faceRadius={faceRadius}
+      strokeWidth={strokeWidth}
+    ></BackgroundCircle>
+    <Eyes
+      offsetX={offsetX}
+      offsetY={offsetY}
+      eyeRadius={eyeRadius}
+    ></Eyes>
+    <Mouth
+      mouthRadius={mouthRadius}
+      mouthWidth={mouthWidth}
     >
-        <BackgroundCircle 
-          radius={centerY - strokeWidth / 2}
-          strokeWidth={strokeWidth}
-        />
-        <Eyes
-          eyeRadius={eyeRadius}
-          eyeOffsetX={eyeOffsetX}
-          eyeOffsetY={eyeOffsetY}
-        />
-        <Mouth
-          mouthRadius={mouthRadius}
-          mouthWidth={mouthWidth}
-        />
-    </FaceContainer>
+    </Mouth>
+  </FaceContainer>
 );

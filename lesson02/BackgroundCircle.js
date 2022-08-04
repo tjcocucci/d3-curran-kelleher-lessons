@@ -1,9 +1,9 @@
-export const BackgroundCircle = ({ radius, strokeWidth }) => (
-    <circle 
-      r={radius}
-      fill="yellow"
-      stroke="black"
-      stroke-width={strokeWidth}
-    />
-  );
+export const BackgroundCircle = ({ faceRadius, strokeWidth }) => (
+  <circle
+    r={faceRadius}
+    fill="yellow"
+    stroke-width={strokeWidth}
+    stroke="black">
+  </circle>
+);
   

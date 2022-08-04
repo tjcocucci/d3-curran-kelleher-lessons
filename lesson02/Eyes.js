@@ -1,15 +1,18 @@
-export const Eyes = ({ eyeRadius, eyeOffsetX, eyeOffsetY}) => (
+export const Eyes = ({ offsetX, offsetY, eyeRadius }) => (
   <>
-    <circle 
+    <circle
+      cx={-offsetX}
+      cy={-offsetY}
       r={eyeRadius}
-      cx={-eyeOffsetX}
-      cy={-eyeOffsetY}
-    />
-    <circle 
+      fill="black"
+    >
+    </circle>
+    <circle
+      cx={offsetX}
+      cy={-offsetY}
       r={eyeRadius}
-      cx={+eyeOffsetX}
-      cy={-eyeOffsetY}
-    />
+      fill="black"
+    >
+    </circle>
   </>
 );
-

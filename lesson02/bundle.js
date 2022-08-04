@@ -7,40 +7,43 @@
   var ReactDOM__default = /*#__PURE__*/_interopDefaultLegacy(ReactDOM);
 
   var BackgroundCircle = function (ref) {
-    var radius = ref.radius;
+    var faceRadius = ref.faceRadius;
     var strokeWidth = ref.strokeWidth;
 
     return (
-      React.createElement( 'circle', { 
-        r: radius, fill: "yellow", stroke: "black", 'stroke-width': strokeWidth })
-    );
+    React.createElement( 'circle', {
+      r: faceRadius, fill: "yellow", 'stroke-width': strokeWidth, stroke: "black" }
+    )
+  );
   };
 
   var Eyes = function (ref) {
+    var offsetX = ref.offsetX;
+    var offsetY = ref.offsetY;
     var eyeRadius = ref.eyeRadius;
-    var eyeOffsetX = ref.eyeOffsetX;
-    var eyeOffsetY = ref.eyeOffsetY;
 
     return (
     React.createElement( React.Fragment, null,
-      React.createElement( 'circle', { 
-        r: eyeRadius, cx: -eyeOffsetX, cy: -eyeOffsetY }),
-      React.createElement( 'circle', { 
-        r: eyeRadius, cx: +eyeOffsetX, cy: -eyeOffsetY })
+      React.createElement( 'circle', {
+        cx: -offsetX, cy: -offsetY, r: eyeRadius, fill: "black" }
+      ),
+      React.createElement( 'circle', {
+        cx: offsetX, cy: -offsetY, r: eyeRadius, fill: "black" }
+      )
     )
   );
   };
 
   var Mouth = function (ref) {
-      var mouthRadius = ref.mouthRadius;
-      var mouthWidth = ref.mouthWidth;
+    var mouthRadius = ref.mouthRadius;
+    var mouthWidth = ref.mouthWidth;
 
-      var mouthArc = d3.arc()
-        .innerRadius(mouthRadius)
-        .outerRadius(mouthRadius + mouthWidth)
-        .startAngle(Math.PI / 2)
-        .endAngle(Math.PI * 3 / 2);
-      return React.createElement( 'path', { d: mouthArc() });
+    var mouthArc = d3.arc()
+      .innerRadius(mouthRadius - mouthWidth / 2)
+      .outerRadius(mouthRadius + mouthWidth / 2)
+      .startAngle(Math.PI / 2)
+      .endAngle(Math.PI * 3 / 2);
+    return React.createElement( 'path', { d: mouthArc() })
   };
 
   var FaceContainer = function (ref) {
@@ -60,41 +63,43 @@
   };
 
   var Face = function (ref) {
-      var width = ref.width;
-      var height = ref.height;
-      var centerX = ref.centerX;
-      var centerY = ref.centerY;
-      var strokeWidth = ref.strokeWidth;
-      var eyeRadius = ref.eyeRadius;
-      var eyeOffsetX = ref.eyeOffsetX;
-      var eyeOffsetY = ref.eyeOffsetY;
-      var mouthWidth = ref.mouthWidth;
-      var mouthRadius = ref.mouthRadius;
+    var width = ref.width;
+    var height = ref.height;
+    var centerX = ref.centerX;
+    var centerY = ref.centerY;
+    var faceRadius = ref.faceRadius;
+    var strokeWidth = ref.strokeWidth;
+    var offsetX = ref.offsetX;
+    var offsetY = ref.offsetY;
+    var eyeRadius = ref.eyeRadius;
+    var mouthRadius = ref.mouthRadius;
+    var mouthWidth = ref.mouthWidth;
 
-      return (
-      React.createElement( FaceContainer, {
-        width: width, height: height, centerX: centerX, centerY: centerY },
-          React.createElement( BackgroundCircle, { 
-            radius: centerY - strokeWidth / 2, strokeWidth: strokeWidth }),
-          React.createElement( Eyes, {
-            eyeRadius: eyeRadius, eyeOffsetX: eyeOffsetX, eyeOffsetY: eyeOffsetY }),
-          React.createElement( Mouth, {
-            mouthRadius: mouthRadius, mouthWidth: mouthWidth })
+    return (
+    React.createElement( FaceContainer, {
+      width: width, height: height, centerX: centerX, centerY: centerY },
+      React.createElement( BackgroundCircle, {
+        faceRadius: faceRadius, strokeWidth: strokeWidth }),
+      React.createElement( Eyes, {
+        offsetX: offsetX, offsetY: offsetY, eyeRadius: eyeRadius }),
+      React.createElement( Mouth, {
+        mouthRadius: mouthRadius, mouthWidth: mouthWidth }
       )
+    )
   );
   };
 
-  var width = 160;
-  var height = 160;
+  var width = 200;
+  var height = 200;
+  var faceRadius = 90;
 
-  var array = d3.range(6 * 5);
-
-  var App = function () { return array.map(function () { return React__default['default'].createElement( Face, {
-      width: width, height: height, centerX: width / 2, centerY: height / 2, strokeWidth: 10, eyeOffsetX: 30, eyeOffsetY: 30, eyeRadius: 10 + Math.random()*10, mouthRadius: 40, mouthWidth: 10 }); }
+  var App = function () { return (
+    React__default["default"].createElement( Face, {
+      width: 200, height: 200, centerX: width / 2, centerY: height / 2, faceRadius: 90, eyeRadius: 10, offsetX: faceRadius / 3, offsetY: faceRadius / 3, strokeWidth: 10, mouthRadius: faceRadius * 2 / 3, mouthWidth: 10 })
   ); };
 
   var rootElement = document.getElementById("root");
-  ReactDOM__default['default'].render(React__default['default'].createElement( App, null ), rootElement);
+  ReactDOM__default["default"].render(React__default["default"].createElement( App, null ), rootElement);
 
-}(React, ReactDOM, d3));
+})(React, ReactDOM, d3);
 //# sourceMappingURL=bundle.js.map
