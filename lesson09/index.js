@@ -7,47 +7,51 @@ const csvUrl = "https://gist.githubusercontent.com/tjcocucci/30c990a48c1b6aecfe8
 const width = 960;
 const height = 500;
 
-
 const App = () => {
   const [data, setData] = useState(null);
-  
-  useEffect(() => {
-    const row = d => {
-      d.Population = +d['2020'];
-      return d;
-    };
-    csv(csvUrl, row).then(data => setData(data.slice(0, 10)));
-  }, []);
-  
-  if (!data) {
-    return (
-      <div>Loading...</div>
-      );
-    }
-    
-  console.log(data[0]);
-  // data.map(d => console.log(d));
-  const yScale = scaleBand()
-    .domain(data.map(d => d.Country))
-    .range([0, height]);
 
-  const xScale = scaleLinear()
-    .domain([0, max(data, d => d.Population)])
-    .range([0, width]);
+  const row = d => {
+    return { country: d["Country"], population: +d["2020"] }
+  };
+  useEffect(() => {
+    csv(csvUrl, row).then(d => {
+      const slicedData = d.slice(0, 20);
+      slicedData.columns = Object.keys(slicedData[0]);
+      setData(slicedData);
+    });
+  }, []);
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
+  const xScale = scaleLinear().
+    domain([0, max(data, d => d.population)]).
+    range([0, width]);
+
+  const yScale = scaleBand().
+    domain(data.map(d => d.country)).
+    range([0, height]);
+
+  // console.log(data[0]);
+  // console.log(data.columns);
+
+  data.map(d => console.log(d));
 
   return (
     <svg width={width} height={height}>
-      {data.map(d => ( 
+      {data.map(d => (
         <rect
           x={0}
-          y={yScale(d.Country)}
-          width={xScale(d.Population)}
+          y={yScale(d.country)}
           height={yScale.bandwidth()}
+          width={xScale(d.population)}
         />
       ))}
     </svg>
   );
 };
+
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
