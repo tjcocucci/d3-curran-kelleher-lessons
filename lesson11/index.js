@@ -7,13 +7,15 @@ import { Marks } from './Marks.js';
 import { useData } from './useData';
 
 const width = 960;
-const height = 300;
-const margin = { top: 50, right: 50, left: 250, bottom: 50 };
+const height = 600;
+const margin = { top: 50, right: 50, left: 250, bottom: 80 };
 const innerWidth = width - margin.right - margin.left
 const innerHeight = height - margin.top - margin.bottom
 
 const xValue = d => d.population;
 const yValue = d => d.country;
+
+const tickFormat = tickValue => d3.format('.2s')(tickValue).replace('G', 'B');
 
 const App = () => {
 
@@ -29,12 +31,16 @@ const App = () => {
 
   const yScale = scaleBand().
     domain(data.map(yValue)).
-    range([0, innerHeight]);
+    range([0, innerHeight]).
+    padding(0.1);
 
   return (
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left}, ${margin.top})`}>
-        <AxisBottom xScale={xScale} innerHeight={innerHeight} />
+        <AxisBottom
+          xScale={xScale}
+          innerHeight={innerHeight}
+          tickFormat={tickFormat} />
         <AxisLeft yScale={yScale} />
         <Marks
           data={data}
@@ -42,7 +48,15 @@ const App = () => {
           yValue={yValue}
           xScale={xScale}
           yScale={yScale}
+          tickFormat={tickFormat}
         />
+        <text
+          className="axis-label"
+          x={innerWidth / 2}
+          y={innerHeight}
+          dy={50}
+          textAnchor="middle"
+        >Population</text>
       </g>
     </svg>
   );
