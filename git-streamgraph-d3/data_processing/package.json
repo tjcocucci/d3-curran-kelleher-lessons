@@ -1,0 +1,18 @@
+{
+  "name": "data_processing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^6.7.0"
+  },
+  "devDependencies": {
+    "d3": "^6.7.0",
+    "d3-array": "^2.12.1"
+  }
+}
