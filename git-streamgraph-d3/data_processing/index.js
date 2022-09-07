@@ -4,6 +4,7 @@ const toJSON = require('./json');
 const combine = require('./combine');
 const aggregate = require('./aggregate');
 
+
 // clone repositories
 console.log("Cloning...");
 clone();
@@ -23,4 +24,3 @@ combine();
 // aggregate
 console.log("aggregate data");
 aggregate();
-

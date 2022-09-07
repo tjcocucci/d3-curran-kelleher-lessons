@@ -1,5 +1,5 @@
 const fs = require("fs")
-const { exec, execSync } = require("child_process")
+const { exec,  execSync } = require("child_process")
 const depends = require("./depends");
 
 const clone = () => {

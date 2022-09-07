@@ -1,5 +1,4 @@
-let fs = require("fs")
-let {exec} = require("child_process")
+let fs = require("fs");
 const depends = require("./depends"); 
 console.log("dependencies", depends)
 
