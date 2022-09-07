@@ -5,12 +5,14 @@ const {
     utcWeeks,
     extent,
     timeParse,
+    timeFormat,
     group,
 } = d3;
 
 const jsonPath = './data/all-d3-commits.json';
 
 const parseDate = timeParse('%Y-%m-%d');
+const formatDate = timeFormat('%Y-%m-%d');
 
 const layer = (d) => d.repo;
 
@@ -43,7 +45,7 @@ const aggregate = () => {
     const dataBylayer = new Map();
 
     const aggregatedData = {
-        dates: dates,
+        dates: dates.map(formatDate),
         repositories: {}
     };
 
@@ -60,7 +62,9 @@ const aggregate = () => {
         });
         aggregatedData.repositories[layer] = layerData;
     }
-    fs.writeFileSync(`./data/aggregated-data.json`, JSON.stringify(aggregatedData))
+    console.log(aggregatedData.repositories[0])
+    console.log(aggregatedData.dates[0])
+    fs.writeFileSync(`../public/aggregated-data.json`, JSON.stringify(aggregatedData))
 }
 
 module.exports = aggregate;
