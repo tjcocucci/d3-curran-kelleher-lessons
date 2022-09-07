@@ -2,9 +2,10 @@ let fs = require("fs")
 let {exec} = require("child_process")
 const depends = require("./depends"); 
 console.log("dependencies", depends)
-// clone each repo
-//let repo = "d3"
-depends.forEach(repo => {
+
+
+const toJSON = () => {
+  depends.forEach(repo => {
   let txt = fs.readFileSync(`data/${repo}.001.🔪sv`).toString()
   lines = txt.split("☕")
   commits = lines.slice(1).map(line => {
@@ -19,4 +20,6 @@ depends.forEach(repo => {
   })
   fs.writeFileSync(`data/${repo}.001.json`, JSON.stringify(commits))
 })
+}
 
+module.exports = toJSON;
