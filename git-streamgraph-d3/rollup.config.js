@@ -8,10 +8,12 @@ const production = !process.env.ROLLUP_WATCH;
 
 export default {
 	input: 'src/index.js',
+	external: ["d3","array-blur","d3-area-label"],
 	output: {
 		file: 'public/bundle.js',
 		format: 'iife', // immediately-invoked function expression — suitable for <script> tags
-		sourcemap: true
+		sourcemap: true,
+		globals: {"d3": "d3","array-blur": "d3","d3-area-label": "d3"},
 	},
 	plugins: [
 		resolve(), // tells Rollup how to find date-fns in node_modules
