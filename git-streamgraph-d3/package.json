@@ -17,6 +17,6 @@
     "watch": "rollup -c -w",
     "dev": "npm-run-all --parallel start watch",
     "start": "serve public",
-    "prettier": "prettier"
+    "prettier": "prettier --write ."
   }
 }
