@@ -9,20 +9,20 @@ pre {
 
 .marks .countries,
 .marks .land {
-  fill: #137b80;
+  fill: #e6e6e6;
   stroke-linejoin: round;
   stroke-linecap: round;
 }
 
 .marks .background {
-  fill: #ececec;
+  fill: #f7f7f7;
   stroke-linejoin: round;
   stroke-linecap: round;
 }
 
 .marks .interiors {
   fill: none;
-  stroke: #1cb3bb;
+  stroke: #d5d5d5;
   stroke-width: 1;
   stroke-linejoin: round;
   stroke-linecap: round;
@@ -30,8 +30,13 @@ pre {
 
 .marks .graticules {
   fill: none;
-  stroke: #9b9b9b;
+  stroke: #d5d5d5;
   stroke-width: 1;
   stroke-linejoin: round;
   stroke-linecap: round;
+}
+
+.city {
+  fill: #137b80;
+  opacity: 0.2;
 }

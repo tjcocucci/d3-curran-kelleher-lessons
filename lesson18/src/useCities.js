@@ -11,7 +11,7 @@ export const useCities = () => {
     lat: +d.lat,
     lng: +d.lng,
     country: d.country,
-    population: d.population,
+    population: +d.population,
   });
 
   useEffect(() => {

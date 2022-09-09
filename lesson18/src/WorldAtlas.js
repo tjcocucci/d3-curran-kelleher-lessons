@@ -1,17 +1,17 @@
-import { geoEqualEarth, geoPath, geoGraticule } from 'd3';
+import { geoPath, geoGraticule } from 'd3';
 
-const projection = geoEqualEarth();
-const path = geoPath(projection);
-const graticule = geoGraticule();
-
-export const WorldAtlas = ({ data }) => (
-  <g className="marks">
-    <path className="background" d={path({ type: 'Sphere' })}></path>
-    <path className="graticules" d={path(graticule())}></path>
-    <path className="land" d={path(data.land)}></path>
-    {/* {data.countries.features.map(country => (
+export const WorldAtlas = ({ data, projection }) => {
+  const path = geoPath(projection);
+  const graticule = geoGraticule();
+  return (
+    <g className="marks">
+      <path className="background" d={path({ type: 'Sphere' })}></path>
+      <path className="graticules" d={path(graticule())}></path>
+      <path className="land" d={path(data.land)}></path>
+      {/* {data.countries.features.map(country => (
       <path className="countries" d={path(country)}></path>
     ))} */}
-    <path className="interiors" d={path(data.interiors)}></path>
-  </g>
-);
+      <path className="interiors" d={path(data.interiors)}></path>
+    </g>
+  );
+};
