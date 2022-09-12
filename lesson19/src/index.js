@@ -27,7 +27,7 @@ const innerHeight = height - margin.top - margin.bottom;
 const circleRadius = 3;
 
 const yTickFormat = d3.format("d");
-const xTickFormat = timeFormat("%b-%y");
+const xTickFormat = timeFormat("%Y");
 
 const threshold = new Date(2014, 1, 1);
 
