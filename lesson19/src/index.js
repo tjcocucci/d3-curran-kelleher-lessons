@@ -44,8 +44,6 @@ const App = () => {
     return <div>Loading...</div>;
   }
 
-  // data = data.filter((d) => d.date > threshold);
-
   const xScale = scaleTime()
     .domain(extent(data, xValue))
     .range([0, innerWidth])
