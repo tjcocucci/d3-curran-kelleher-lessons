@@ -20,7 +20,7 @@ import { useData } from "./useData";
 // const height = window.height;
 const width = 900;
 const height = 500;
-const margin = { top: 20, right: 20, bottom: 50, left: 100 };
+const margin = { top: 20, right: 20, bottom: 50, left: 150 };
 const innerWidth = width - margin.right - margin.left;
 const innerHeight = height - margin.top - margin.bottom;
 
@@ -44,7 +44,7 @@ const App = () => {
     return <div>Loading...</div>;
   }
 
-  data = data.filter((d) => d.date > threshold);
+  // data = data.filter((d) => d.date > threshold);
 
   const xScale = scaleTime()
     .domain(extent(data, xValue))
@@ -104,7 +104,7 @@ const App = () => {
           <text
             transform={`translate(0, ${innerHeight / 2}) rotate(-90)`}
             className="axis-label"
-            dy={-50}
+            dy={-75}
             textAnchor="middle"
           >
             {yAxisLabel}

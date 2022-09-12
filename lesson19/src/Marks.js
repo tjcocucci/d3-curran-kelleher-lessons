@@ -6,6 +6,6 @@ export const Marks = ({ data, yScale, xScale }) =>
       y={yScale(bin.y)}
       height={yScale.range()[0] - yScale.range()[1] - yScale(bin.y)}
       width={xScale(bin.x1) - xScale(bin.x0)}
-    >
+    > <title>{bin.y}</title>
     </rect>
   ))
