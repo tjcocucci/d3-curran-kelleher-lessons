@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   scaleLinear,
   scaleTime,
@@ -7,22 +7,22 @@ import {
   max,
   sum,
   histogram as bin,
-} from "d3";
-import { AxisBottom } from "./AxisBottom.js";
-import { AxisLeft } from "./AxisLeft.js";
-import { Marks } from "./Marks.js";
+} from 'd3';
+import { AxisBottom } from './AxisBottom.js';
+import { AxisLeft } from './AxisLeft.js';
+import { Marks } from './Marks.js';
 
 export const DateHistogram = ({ data, innerWidth, innerHeight }) => {
   const circleRadius = 3;
 
-  const yTickFormat = d3.format("d");
-  const xTickFormat = timeFormat("%Y");
+  const yTickFormat = d3.format('d');
+  const xTickFormat = timeFormat('%Y');
 
   const xValue = (d) => d.date;
-  const xAxisLabel = "Date";
+  const xAxisLabel = 'Date';
 
   const yValue = (d) => d.total;
-  const yAxisLabel = "Dead or missing";
+  const yAxisLabel = 'Dead or missing';
 
   const xScale = scaleTime()
     .domain(extent(data, xValue))
@@ -48,6 +48,7 @@ export const DateHistogram = ({ data, innerWidth, innerHeight }) => {
 
   return (
     <>
+      <rect height={innerHeight} width={innerWidth} fill="white"></rect>
       <AxisBottom
         xScale={xScale}
         innerHeight={innerHeight}

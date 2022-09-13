@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { geoEqualEarth } from "d3";
-import { useData } from "./useData.js";
-import { useWorldAtlas } from "./BubbleMap/useWorldAtlas.js";
-import { BubbleMap } from "./BubbleMap/BubbleMap.js";
-import { DateHistogram } from "./DateHistogram/DateHistogram.js";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { geoEqualEarth } from 'd3';
+import { useData } from './useData.js';
+import { useWorldAtlas } from './BubbleMap/useWorldAtlas.js';
+import { BubbleMap } from './BubbleMap/index.js';
+import { DateHistogram } from './DateHistogram/index.js';
 
 const margin = { top: 50, right: 50, left: 50, bottom: 50 };
 
@@ -51,5 +51,5 @@ const App = () => {
   );
 };
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 ReactDOM.render(<App />, rootElement);
