@@ -1,0 +1,60 @@
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  overflow: hidden;
+}
+
+.marks .countries,
+.marks .land {
+  fill: #e6e6e6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.marks .background {
+  fill: #f7f7f7;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.marks .interiors {
+  fill: none;
+  stroke: #d5d5d5;
+  stroke-width: 1;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.marks .graticules {
+  fill: none;
+  stroke: #d5d5d5;
+  stroke-width: 1;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.city {
+  fill: #137b80;
+  opacity: 0.2;
+}
+
+.axis-label {
+  fill: #635f5d;
+  font-size: 1em;
+}
+
+.tick line {
+  stroke: #635f5d;
+}
+
+.tick text {
+  fill: #635f5d;
+}
+
+.bars {
+  fill: #137b80;
+}
+
+pre {
+  font-size: 3em;
+}
