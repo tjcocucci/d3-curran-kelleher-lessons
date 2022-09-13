@@ -14,7 +14,7 @@ const height = 500 + margin.top + margin.bottom;
 const innerHeight = height - margin.top - margin.bottom;
 const innerWidth = width - margin.left - margin.right;
 
-const histogramHeight = innerHeight - 400;
+const histogramHeight = 0.2;
 const dateHistogramMargin = 50;
 
 const projection = geoEqualEarth();
@@ -37,13 +37,13 @@ const App = () => {
         />
         <g
           transform={`translate(${dateHistogramMargin}, ${
-            innerHeight - histogramHeight
+            innerHeight * (1 - histogramHeight)
           })`}
         >
           <DateHistogram
             data={data}
             innerWidth={innerWidth - dateHistogramMargin}
-            innerHeight={histogramHeight}
+            innerHeight={innerHeight * histogramHeight}
           />
         </g>
       </g>
