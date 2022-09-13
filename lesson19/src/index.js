@@ -5,8 +5,6 @@ import {
   scaleTime,
   extent,
   timeFormat,
-  timeMonths,
-  min,
   max,
   sum,
   histogram as bin,
@@ -28,8 +26,6 @@ const circleRadius = 3;
 
 const yTickFormat = d3.format("d");
 const xTickFormat = timeFormat("%Y");
-
-const threshold = new Date(2014, 1, 1);
 
 const App = () => {
   let data = useData();
