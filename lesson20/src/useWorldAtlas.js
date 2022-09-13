@@ -17,6 +17,5 @@ export const useWorldAtlas = () => {
       });
     });
   }, []);
-  console.log(worldAtlas);
   return worldAtlas;
 };

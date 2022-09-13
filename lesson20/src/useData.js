@@ -7,12 +7,13 @@ const csvUrl =
 export const useData = () => {
   const [data, setData] = useState(null);
   const row = (d) => {
-    const [lat, long] = d["Location Coordinates"]
-    d.date = new Date(d["Reported Date"]);
-    d.latitude = +lat;
-    d.longitude = +long;
-    d.total = +d["Total Dead and Missing"];
-    return d;
+    const [lat, long] = d["Location Coordinates"].split(", ");
+    return {
+      date: new Date(d["Reported Date"]),
+      latitude: +lat,
+      longitude: +long,
+      total: +d["Total Dead and Missing"]
+    };
   };
 
   useEffect(() => {

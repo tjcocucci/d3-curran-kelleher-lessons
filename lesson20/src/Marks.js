@@ -1,12 +1,12 @@
 export const Marks = ({
-  cities,
+  data,
   projection,
   xValue,
   yValue,
   sizeScale,
   sizeValue,
 }) => {
-  const circles = cities.map((d) => {
+  const circles = data.map((d) => {
     const [x, y] = projection([xValue(d), yValue(d)]);
     return { x: x, y: y, size: sizeScale(sizeValue(d)) };
   });
