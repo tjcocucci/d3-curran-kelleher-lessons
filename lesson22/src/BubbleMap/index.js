@@ -1,6 +1,6 @@
-import { scaleSqrt, max } from 'd3';
-import { WorldAtlas } from './WorldAtlas.js';
-import { Marks } from './Marks.js';
+import { scaleSqrt, max } from "d3";
+import { WorldAtlas } from "./WorldAtlas.js";
+import { Marks } from "./Marks.js";
 
 export const BubbleMap = ({ data, worldAtlasData, projection }) => {
   const maxRadius = 25;

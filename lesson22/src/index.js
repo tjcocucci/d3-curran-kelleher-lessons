@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { geoEqualEarth } from 'd3';
-import { useData } from './useData.js';
-import { useWorldAtlas } from './BubbleMap/useWorldAtlas.js';
-import { BubbleMap } from './BubbleMap/index.js';
-import { DateHistogram } from './DateHistogram/index.js';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import { geoEqualEarth } from "d3";
+import { useData } from "./useData.js";
+import { useWorldAtlas } from "./BubbleMap/useWorldAtlas.js";
+import { BubbleMap } from "./BubbleMap/index.js";
+import { DateHistogram } from "./DateHistogram/index.js";
 
 const margin = { top: 50, right: 50, left: 50, bottom: 50 };
 
@@ -23,15 +23,21 @@ const App = () => {
   const data = useData();
   const worldAtlasData = useWorldAtlas();
 
+  const [brushExtent, setBrushExtent] = useState(null);
+
   if (!data || !worldAtlasData) {
     return <div>Loading...</div>;
   }
+
+  const filteredData = data.filter(
+    (d) => !brushExtent || (d.date > brushExtent[0] && d.date < brushExtent[1])
+  );
 
   return (
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left}, ${margin.top})`}>
         <BubbleMap
-          data={data}
+          data={filteredData}
           worldAtlasData={worldAtlasData}
           projection={projection}
         />
@@ -44,6 +50,7 @@ const App = () => {
             data={data}
             innerWidth={innerWidth - dateHistogramMargin}
             innerHeight={histogramHeight}
+            setBrushExtent={setBrushExtent}
           />
         </g>
       </g>
@@ -51,5 +58,5 @@ const App = () => {
   );
 };
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);

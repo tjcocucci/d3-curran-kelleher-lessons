@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from "react";
 import {
   scaleLinear,
   scaleTime,
@@ -6,23 +6,31 @@ import {
   timeFormat,
   max,
   sum,
+  brushX,
+  select,
+  event,
   histogram as bin,
-} from 'd3';
-import { AxisBottom } from './AxisBottom.js';
-import { AxisLeft } from './AxisLeft.js';
-import { Marks } from './Marks.js';
+} from "d3";
+import { AxisBottom } from "./AxisBottom.js";
+import { AxisLeft } from "./AxisLeft.js";
+import { Marks } from "./Marks.js";
 
-export const DateHistogram = ({ data, innerWidth, innerHeight }) => {
+export const DateHistogram = ({
+  data,
+  innerWidth,
+  innerHeight,
+  setBrushExtent,
+}) => {
   const circleRadius = 3;
 
-  const yTickFormat = d3.format('d');
-  const xTickFormat = timeFormat('%Y');
+  const yTickFormat = d3.format("d");
+  const xTickFormat = timeFormat("%Y");
 
   const xValue = (d) => d.date;
-  const xAxisLabel = 'Date';
+  const xAxisLabel = "Date";
 
   const yValue = (d) => d.total;
-  const yAxisLabel = 'Dead or missing';
+  const yAxisLabel = "Dead or missing";
 
   const xScale = scaleTime()
     .domain(extent(data, xValue))
@@ -45,6 +53,21 @@ export const DateHistogram = ({ data, innerWidth, innerHeight }) => {
     .domain([0, max(binnedData, (b) => b.y)])
     .range([innerHeight, 0])
     .nice();
+
+  const brushRef = useRef();
+
+  useEffect(() => {
+    const brush = brushX().extent([
+      [0, 0],
+      [innerWidth, innerHeight],
+    ]);
+    brush(select(brushRef.current));
+    brush.on("brush end", () =>
+      setBrushExtent(
+        event.selection ? event.selection.map(xScale.invert) : null
+      )
+    );
+  }, [innerWidth, innerHeight]);
 
   return (
     <>
@@ -85,6 +108,7 @@ export const DateHistogram = ({ data, innerWidth, innerHeight }) => {
       >
         {yAxisLabel}
       </text>
+      <g ref={brushRef}></g>
     </>
   );
 };
